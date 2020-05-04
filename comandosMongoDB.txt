@@ -1,0 +1,49 @@
+* help            = Muestra lista de ayudas
+* db.help()       = Muestra lista de funciones de comandos para usar en db...
+* db              = Muestra la base de dato usando actual
+* show dbs        = Muestra todas las bases de datos creadas
+* use NombreDeBd                      = Crea una nueva base de datos
+* db.dropDatabase()                   = Elimina una base de datos
+* db.createCollection("nombre")       = Crea una coleccion
+* show collections                    = Muestra las colecciones creadas
+* db.nombrecollection.drop()         = Elimina una coleccion
+
+* //otra forma de crear una coleccion
+        db.products.insert(
+        {
+            "nombre": "laptop",
+            "precio": 40.2,
+            "active": false,
+            "created_at": new Date("12/12/1999"),
+            "somedata": [1, "a", []],
+            "factucturer":{
+                "name" : "dell",
+                "version": "xps",
+                "location":{
+                    "city": "usa",
+                    "address": "asdasd"
+                }
+            }
+        })
+
+* db.products.find()                              = Muestra todo los datos de la coleccion
+* db.products.find().pretty()                     = Muestra los datos de manera ordenada.
+* db.products.find({"nombre": "laptop"})          = Filtrar datos
+* db.products.findOne({"nombre": "laptop"})       = Filtra los datos y solo te muestra el primero
+
+    // puede recibir 2 parametros, el primero para filtrar y el 2do para mostrar solo lo que deseamos
+    // en el 2do parametro los valores reciben 1: en caso que quiera mostrarse y 0 si no queremos
+* db.products.find( {"nombre": "laptop"} , {"precio": 1 , "active", "_id", 0 })
+
+* db.products.find().limit(2)                                   = filtra y devuelve solo 2 datos        
+* db.products.find({"nombre": "laptop"}).sort({name: 1})        = lo ordenamos por nombre
+* db.products.find().count()                                    = Cuenta la cantidad de datos existentes
+* // EXISTE forEach()
+* db.products.update( {"name": "laptop"} , { "mensaje": "hola" } )                  = Esto busca a los que tienen name:laptop y remplaza toda la informacion q tiene por mensaje:"hola"
+* db.products.update( {"name": "laptop"} , { $set : { "mensaje": "hola" } } )       = Con el "$set" podemos agregar sin modificar todo el objeto
+* db.products.update( {"name": "laptop"} , { $rename : { "name": "nombre" } } )     = Renombramos los nombres de cada atributo
+* db.products.remove()                                                              = elimina todo el documento
+* db.products.remove( {"nombre": "laptop"} )                                        = elimina el objeto q tengra nombre: laptop
+
+db.lands.update({"nro": "1"}, {$set:{"status" : "SOLD"}})
+db.lands.updateMany({"status": "SOLD"}, {$set:{"status" : "NOT SOLD"}}) 
